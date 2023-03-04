@@ -9,4 +9,4 @@ print(float("7.789")) #op: 7.789  i.e. string to float conversion
 
 print(str("10.5")) #op: 10.5 
 print(str(10)) #op: 10
-print(str("10.5"))
+print(str("10.5")) #10.5
