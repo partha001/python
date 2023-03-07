@@ -6,4 +6,4 @@ print(heroes) #'batman', 'spiderman']
 #note that this can be done using the pop() also but the delete keyword provides an 
 # advantange of deleting multiple elements using slicing techniques
 del heroes[:]
-print(heroes)
+print(heroes) #op:[]

@@ -9,7 +9,8 @@ print(heros) #['superman']
 #however passing an index that doesnt exist will give IndexError
 #print(heros.pop(100)) #op: IndexError
 
-cities =[]
-print(cities.pop())
+#trying to pop from empty list will give below error
+# cities =[]
+# print(cities.pop()) #IndexError: pop from empty list
 
 

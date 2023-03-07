@@ -10,4 +10,4 @@ print(len(countries)) #op: 4
 #also note that the append method does return anything i.e 
 #it has a return type of None . thus we write 
 countries = countries.append("brazil")
-print(countries)
+print(countries) #op: None
