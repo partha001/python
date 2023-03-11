@@ -1,6 +1,6 @@
 import string
 import math
-import this
+#import this ## uncommneting this will show the principles on which the python language is built
 
 #making use of the string library
 print(string.ascii_letters) #op: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
