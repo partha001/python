@@ -17,3 +17,10 @@ print(iphone._firmware) #op: 10.0
 print(iphone.update_firmware()) #op: None 
 print(iphone._firmware) #op: 11.0
 
+#it is convention to name the private attributes with names starting with _ . 
+#note starting an attribute name with _ doesnt actually make it private. 
+# user can still access and change its value as usual as there is no concept of private or protected as such in python . 
+# however starting the name with _ we are suggesting that its value should not be changed
+iphone._company = "samsung"
+print(iphone._company)
+
