@@ -1,3 +1,5 @@
+# example : dunder other comparison methods
+
 class Student():
     def __init__(self, math, history, writing) :
         self.math = math

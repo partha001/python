@@ -1,3 +1,4 @@
+# example of __eq__()
 #this is equals to the .equals() method in java
 
 class Student():
