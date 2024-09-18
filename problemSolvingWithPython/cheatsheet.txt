@@ -1,0 +1,107 @@
+list:
+*********************************************************************************************************************************
+declaring list
+    mylist = []
+
+
+modifying a value at a particular index 
+    webBrowsers= ["chrome","firefox","safari"]
+    print(webBrowsers) #op: ['chrome', 'firefox', 'safari']
+
+    webBrowsers[-1] ="Opera"
+    webBrowsers[0] = "google chrome"
+    print(webBrowsers) #op: ['google chrome', 'firefox', 'Opera']
+
+    note: [using negative indices we can modify element from the end of the list] 
+
+
+add element to end of the list
+    mylist.append(item)
+
+adding multiple values to the end of  a list. this will append all the values present in anotherList to the end of myList
+    mylist.extend(anotherList)
+
+
+inserting values at a particular position of a list
+calling pop() without argument removes from end of the list.
+However we can additionally pass an index parameter to remove element from a particular index
+
+    plays = ["hamlet", "macbeth", "kingLear"]
+    plays.insert(1,"juliusCeaser")
+    print(plays) #op: ['hamlet', 'juliusCeaser', 'macbeth', 'kingLear']
+
+    plays.insert(0,"romeoAndJuliet")
+    print(plays) #['romeoAndJuliet', 'hamlet', 'juliusCeaser', 'macbeth', 'kingLear']
+
+
+    #note that this will not throw error though there are not 100 elements
+    #rather python will silently add this to the end of the list
+    plays.insert(100,"aMidsummerNightsDream")
+    print(plays) #['romeoAndJuliet', 'hamlet', 'juliusCeaser', 'macbeth', 'kingLear', 'aMidsummerNightsDream']
+
+
+
+to fetch and remove element from the end of the list
+    heros = ["superman","batman","spiderman"]
+    print(heros.pop()) #op: spiderman
+    print(heros) #op: ['superman', 'batman']
+
+
+    #we can also pass an index parameter to the pop() and remove item from a particular position
+    print(heros.pop(1)) #batman
+    print(heros) #['superman']
+
+
+    #however passing an index that doesnt exist will give IndexError
+    #print(heros.pop(100)) #op: IndexError
+
+
+    #trying to pop from empty list will give below error
+    # cities =[]
+    # print(cities.pop()) #IndexError: pop from empty list
+
+
+finding length
+    len(mylist)
+
+sorting a list
+    mylist.sort()
+
+
+to clear a list  
+    mylist.clear()
+
+to reverse a list
+    myList.reverse()
+
+to count occurance of an element in a list 
+    heroes = ["superman","batman","superman"]
+    print(heroes.count("superman")) #op: 2
+    print(heroes.count("wonderwoman")) #op: 0
+
+
+to get first index of an element 
+    heroes = ["superman","batman","superman"]
+    print(heroes.index("superman")) #op: 0
+
+
+to make a shallow copy of a 1-d list  [doesnt work for 2d list]
+    heroes = ["superman","batman","superman"]
+    moreHeroes = heroes.copy() 
+
+to split values using delimiter and then take the element into a list. to be noted this works only for strings
+    countries = "india,usa,canada,germay"
+    countryList = countries.split(",")
+
+
+    
+
+
+tuples
+*********************************************************************************************************************************
+declaring tuples 
+    tuples = ()
+    heroes = ("batman","superman","spiderman")
+
+
+
