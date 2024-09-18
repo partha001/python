@@ -2,12 +2,17 @@ list:
 *********************************************************************************************************************************
 declaring list
     mylist = []
+    mylist = list()  
+    mylist = [0] * 10 #initializing list of 10 element with zero
+    blank_list = [None] * 10 #will produce [None, None, None, None, None, None, None, None, None, None]
+    mylist = list(range(10)) will have elements from 0 to 9
 
 
 modifying a value at a particular index 
     webBrowsers= ["chrome","firefox","safari"]
     print(webBrowsers) #op: ['chrome', 'firefox', 'safari']
 
+    #note that for setting value this way using index that index need to exist . else it will give indexOutOfbound Exception
     webBrowsers[-1] ="Opera"
     webBrowsers[0] = "google chrome"
     print(webBrowsers) #op: ['google chrome', 'firefox', 'Opera']
@@ -23,9 +28,6 @@ adding multiple values to the end of  a list. this will append all the values pr
 
 
 inserting values at a particular position of a list
-calling pop() without argument removes from end of the list.
-However we can additionally pass an index parameter to remove element from a particular index
-
     plays = ["hamlet", "macbeth", "kingLear"]
     plays.insert(1,"juliusCeaser")
     print(plays) #op: ['hamlet', 'juliusCeaser', 'macbeth', 'kingLear']
@@ -42,6 +44,9 @@ However we can additionally pass an index parameter to remove element from a par
 
 
 to fetch and remove element from the end of the list
+calling pop() without argument removes from end of the list.
+However we can additionally pass an index parameter to remove element from a particular index
+
     heros = ["superman","batman","spiderman"]
     print(heros.pop()) #op: spiderman
     print(heros) #op: ['superman', 'batman']
@@ -61,18 +66,48 @@ to fetch and remove element from the end of the list
     # print(cities.pop()) #IndexError: pop from empty list
 
 
-finding length
+removing element by index
+    heroes = ["batman","superman","spiderman"]
+
+    del heroes[1]
+    print(heroes) #'batman', 'spiderman']
+
+    #note that this can be done using the pop() also but the delete keyword provides an 
+    # advantange of deleting multiple elements using slicing techniques
+    del heroes[:]
+    print(heroes) #op:[]
+
+
+removing element by value
+note: if there are multiple occurance of a value then it will remove only the first occurance
+    heroes = ["superman", "batman", "spiderman", "superman"]
+    heroes.remove("superman")
+    print(heroes) #['batman', 'spiderman', 'superman']
+
+    #however if try to delete a value that doesnt exist 
+    # in the list then it will throw ValueError
+    #heroes.remove("wonderWoman") #op: ValueError: list.remove(x): x not in list
+
+
+    #this can be handled as below 
+    if "wonderWoman" in heroes:   #this will make it failSafe
+        heroes.remove("wonderWoman")
+
+
+finding length . len()
     len(mylist)
 
-sorting a list
+sorting a list . sort()
     mylist.sort()
 
 
-to clear a list  
+to clear a list  . clear()
     mylist.clear()
 
-to reverse a list
+to reverse a list . reverse()
     myList.reverse()
+
+    also reversed(myList)
 
 to count occurance of an element in a list 
     heroes = ["superman","batman","superman"]
@@ -80,7 +115,7 @@ to count occurance of an element in a list
     print(heroes.count("wonderwoman")) #op: 0
 
 
-to get first index of an element 
+to get first index of an element  : index()
     heroes = ["superman","batman","superman"]
     print(heroes.index("superman")) #op: 0
 
@@ -93,8 +128,39 @@ to split values using delimiter and then take the element into a list. to be not
     countries = "india,usa,canada,germay"
     countryList = countries.split(",")
 
-
+to list of string items . join()
+    countriesList = ["india","usa","germany","canada"]
+    print(",".join(countriesList)) #op: india,usa,germany,canada
+    #thus join combines the list elements and returns a single list
+    print(", ".join(countriesList)) #op: india, usa, germany, canada
+    print("".join(countriesList)) #op: indiausagermanycanada
+    print("|".join(countriesList)) #op: india|usa|germany|canada
     
+
+compressing list into 1 single zip
+    breakfasts = ["eggs","cereal","banana"]
+    lunches = ["sushi","chicken kabab","soup"]
+    dinners = ["steak","meatballs","pasta"]
+
+    print(zip(breakfasts,lunches, dinners)) #<zip object at 0x0000021935B4E300>
+
+    #thus the zip functions combines the lists and builts a zip object
+    print(type(zip(breakfasts,lunches, dinners))) #<class 'zip'>
+
+
+    #zip object is iterable . now lets look at the internal structure of the zip object
+    print(list(zip(breakfasts,lunches, dinners)))
+    #op:   [('eggs', 'sushi', 'steak'), ('cereal', 'chicken kabab', 'meatballs'), ('banana', 'soup', 'pasta')]
+    #thus we can see that zip object has combined the list into touples
+
+
+    #now lets see how to iterate the zip
+    for a, b, c in zip(breakfasts,lunches, dinners):
+        print(f"my meal today was {a} and {b} and {c}")
+    #op:
+    # my meal today was eggs and sushi and steak
+    # my meal today was cereal and chicken kabab and meatballs
+    # my meal today was banana and soup and pasta
 
 
 tuples
@@ -102,6 +168,25 @@ tuples
 declaring tuples 
     tuples = ()
     heroes = ("batman","superman","spiderman")
+
+
+unpacking tuples
+
+
+
+
+other built in functions
+*********************************************************************************************************************************
+    help
+    map
+    lambda
+    all and any 
+    max and min 
+    sum 
+    dir 
+    format 
+    range(10) goes from 0 to 9
+
 
 
 
