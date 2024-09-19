@@ -192,6 +192,19 @@ other built in functions
     dir 
     format 
     range(10) goes from 0 to 9
+    min() finds minimum of two or more supplied values
+    max() finds maximum of two or more supplied values
+
+
+other language hacks
+**********************************************************************************************************************************
+ternary operator
+    myvar = a if condition else b
+
+
+swapping values in variables
+    a, b = b, a
+
 
 
 
