@@ -66,6 +66,9 @@ However we can additionally pass an index parameter to remove element from a par
     # print(cities.pop()) #IndexError: pop from empty list
 
 
+however if we only want to read the item from end without 
+    last = list[-1]
+
 removing element by index
     heroes = ["batman","superman","spiderman"]
 
@@ -93,6 +96,9 @@ note: if there are multiple occurance of a value then it will remove only the fi
     if "wonderWoman" in heroes:   #this will make it failSafe
         heroes.remove("wonderWoman")
 
+
+to check if a list is empty
+    if len(list)
 
 finding length . len()
     len(mylist)
