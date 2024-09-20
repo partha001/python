@@ -1,3 +1,182 @@
+strings:
+*********************************************************************************************************************************
+to check if a character or set of characters exist within a string or not : in and not in
+similar to contains() in java
+    text = "India is my country"
+    print("India" in text) #output: true
+    print("India" not in text) #op: false
+
+
+find()
+    # retuns the index if character is found else return -1 . and here are the different overloads
+    browser = "Google Chorme"
+    print(browser.find("C")) #prints 7
+    print(browser.find("z")) #prints -1
+    print(browser.find("Goo")) #prints 0
+    print(browser.find("Good")) #prints -1
+    #an overriden form of find where we can mention from which startIndex we want to look
+    print(browser.find("C",8)) #prints -1
+    #another overriden from of find is to mention both start and end
+    print(browser.find("m",1,7)) #prints -1
+
+index()
+    # index() works the same as find() but its more strict i.e. it will make
+    # the program fail if the search string is not found
+    print(browser.index("C")) #prints 7
+    print(browser.index("z")) #ValueError: substring not found
+
+startswith() and endswith()
+    text = "what a lovely day"
+    print(text.startswith("what")) #prints True
+    #overriden forms allow us to pass a start index from where we want to search
+    print(text.startswith("what",1)) #prints False
+    #another overridden form is to pass both startIndex and endIndex
+    print(text.startswith("day",5,12)) #prints false
+
+    similarly one can do endswith() also
+
+count()
+    #count method looks for exact match of the search string
+    word ="queueing"
+    print(word.count("e")) #prints 2
+    print(word.count("ue")) #prints 2
+    print(word.count("ing")) #prints 1
+
+case-related: capitalize() , title() , upper(), loser()
+    mySentence = "once upon a time in india"
+    #capitalize()  : this method will capitalize the first character only
+    print(mySentence.capitalize()) #OP: Once upon a time in india
+
+
+    #title() : this method capitalizes the first and every-character that follows a space
+    print(mySentence.title()) #op: Once Upon A Time In India
+
+
+    #upper() : this method changes everything to capitals
+    print(mySentence.upper())
+
+
+    #lower()
+    word2 = "HELLO"
+    print(word2.lower()) #OP: hello
+
+
+    #swapcase() : this method inverses the cases
+    companyName = "Adobe"
+    print(companyName.swapcase()) #OP: aDOBE
+
+
+    #method chaining
+    name = "BENJAMIN FRANKLIN"
+    print(name.lower().title()) #OP: Benjamin Franklin
+    #it is to be noted since strings are immutable so every chainging intermediate
+    #produces a new string
+
+clearing spaces : lstrip() , rstrip() , strip()
+    empty_space = "     some content     "
+    print("initial length", len(empty_space)) #op: initial length 22
+
+
+    #using the rstrip() we can remove space from the right side of the string
+    print(empty_space.rstrip())  #op:     some content
+    print(len(empty_space.rstrip()))  #op: 17   this is just to prove that spaces are indeed removed
+
+
+    #similarly we can use lstrip() to remove space from the left
+    print(empty_space.lstrip()) #op: some content
+    print(len(empty_space.lstrip())) #17
+
+
+    #using the strip() will remove spaces from both sides
+    print(empty_space.strip()) #op: some content
+    print(len(empty_space.strip())) #op: 12
+
+
+    #the strip methods can also be used to remove characters from the start or end or both depending upon
+    #which strip method we are using
+    website = "www.python.org"
+    print(website.lstrip("w")) #op: .python.org
+    print(website.rstrip("org")) #op: www.python.
+
+
+    #note how it behaves for below . it will look for the characters that we want to strip from start or end.
+    #1.it will not remove characters if they appear in the middle of the string
+    #2. also it checks for character or combination for if they appear in start or end . note '.' is not taken into accout in below case since match is not found
+    print(website.strip("worg.")) #op: python
+
+
+replace: replace()
+    phoneNumber = "555 555 1234"
+    print(phoneNumber.replace(" ","-")) #op: 555-555-1234
+    print(phoneNumber.replace("5","9")) #op: 999 999 1234
+    #note the since is strings are mutable so the initil variable remains same.
+    #its just that the replace returns a new string object after doing the replacement
+    print(phoneNumber) #555 555 1234
+
+
+format()
+    madLibs = "{} laughed at the {} {}"
+
+    #now there are 3ways in which we can pass the parameters to the format method
+    # 1.by relative position 2.by numeric position  3.by keyword arguments
+
+
+    # when passed by relative position
+    print(madLibs.format("Bobby","green","alien")) #op: Bobby laughed at the green alien
+
+    #however if we dont pass the same number of argument it will throw Index error as for the below line
+    #print(madLibs.format("Bobby","green"))
+
+
+    #however if we pass more arguments then we will not run into error
+    print(madLibs.format("Bobby","green","alien","sometext")) #op: Bobby laughed at the green alien
+
+    ### passing argument by numeric position
+    sentence = "{0} laughed at the {1} {2}"
+    print(sentence.format("Bobby","green","alien")) #op:Bobby laughed at the green alien
+
+    sentence = "{2} laughed at the {1} {0}"
+    print(sentence.format("Bobby","green","alien")) #op: alien laughed at the green Bobby
+
+
+    # it is also to note that below lines will throw index error
+    # sentence = "{4} laughed at the {5} {6}"
+    # print(sentence.format("Bobby","green","alien"))
+
+
+    ### passing vales using keyword parameter
+    sentence = "{name} laughed at the {adjective} {noun}"
+    print(sentence.format(name="Bobby",adjective="green", noun="alien")) #Bobby laughed at the green alien
+    #advantage1: using this technique the advantage is that the order of parameters doesnt matter anymore
+    #advantage2: the same parameterName can be resused and the same value dosnt need to be passed as shown below
+    sentence2 = "{name} is my country and i love my country {name}" #op: India is my country and i love my country India
+    print(sentence2.format(name="India"))
+
+
+    #taking input and replacing in string
+    name = input("enter any name")
+    adjective = input("enter an adjective")
+    noun = input("enter a noun")
+    sentence3 = "{name} laughed at the {adjective} {noun}"
+    print(sentence3.format(name=name, adjective = adjective , noun=noun)) #op: partha laughed at the good mimi
+
+
+formatted string literal
+    note how using the string literal we can format strings without using the format()
+    #this is more modern way of writing code which results in less code
+    name ="Bobby"
+    adjective = "green"
+    noun = "alient"
+    madLibs = f"{name} laughed at the {adjective} {noun}" #Bobby laughed at the green alient
+    print(madLibs)
+
+    #using f-literal and {} makes python treat {}  as an expression and evaluate/replace vaules in it
+    sentence = f"2 + 2 is {2+2}" #2 + 2 is 4
+    print(sentence)
+
+
+
+
 list:
 *********************************************************************************************************************************
 declaring list
