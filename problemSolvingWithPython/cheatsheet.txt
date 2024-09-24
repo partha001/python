@@ -7,6 +7,16 @@ similar to contains() in java
     print("India" not in text) #op: false
 
 
+
+string to character array
+    mylist = list("hello")
+
+    print([x for x in uhello])   #this is another way building list
+
+    #without taking to a list one can also itrate over characters as
+    for c in "foobar"
+
+
 find()
     # retuns the index if character is found else return -1 . and here are the different overloads
     browser = "Google Chorme"
