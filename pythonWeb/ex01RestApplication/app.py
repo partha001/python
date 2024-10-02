@@ -14,13 +14,14 @@ stores = [
     }
 ]
 
-
+# api to get all store details
 @app.get("/store")
 def get_stores():
     return {"stores":stores}
 
-### reading data post request payload
-### this api creates an empty store with zero items
+# api to create store
+# note: reading data post request payload
+# this api creates an empty store with zero items
 # request uri: http://localhost:5000/store
 # request payload:  {"name": "MyStore1"}
 @app.post("/store")
@@ -36,9 +37,9 @@ def create_stores():
     return "store = {} already exists".format(request_data["name"]), 200
 
 
-
-### taking the store name as path-param
-## http://localhost:5000/store/MyStore1/item
+# api to create items within a particular store
+# note: this shows how to read path-variable or path-parama
+# http://localhost:5000/store/MyStore1/item
 # {"name": "Table","price":20}
 @app.post("/store/<string:name>/item")
 def create_item(name):
@@ -50,4 +51,17 @@ def create_item(name):
             store["items"].append(new_item)
             return new_item,201
     return "store={} not found".format(name), 200
+
+
+# api to get details of a particular store
+# note: reading request query parameters
+#  http://localhost:5000/store/getStoreDetails?storename=MyStore
+@app.get("/store/getStoreDetails")
+def getStoreDetails():
+    storename = request.args.get('storename')
+    for store in stores:
+        if store["name"] == storename:
+            return store, 200
+    return "store with name = {} not found".format("storename"), 200
+
 
