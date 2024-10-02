@@ -384,6 +384,18 @@ other built in functions
     min() finds minimum of two or more supplied values
     max() finds maximum of two or more supplied values
 
+dictionary related
+**********************************************************************************************************************************
+
+to check if a key exists in dictionary
+    key1 in myDict
+
+ getting value for a key
+   myvar = myDict["mykey1"] #however this approach gives key error if the key doesnt exist
+
+  another way of accessing value is by using the get() method of the dictionary class. this returns null if the key doesnt exist
+  myDict.get("mykey1") //this returns None if the key doenst exist
+
 
 other language hacks
 **********************************************************************************************************************************
@@ -393,6 +405,11 @@ ternary operator
 
 swapping values in variables
     a, b = b, a
+
+
+
+
+
 
 
 

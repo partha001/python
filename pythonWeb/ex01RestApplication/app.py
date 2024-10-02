@@ -31,6 +31,10 @@ def create_stores():
     store_exists = False
     for store in stores:
         if store["name"] == request_data["name"]:
+            store_exists= True
+
+
+    if store_exists==False:
             new_store = {"name": request_data["name"],"items":[]}
             stores.append(new_store)
             return "store = {} created".format(request_data["name"]), 201
