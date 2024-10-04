@@ -90,3 +90,16 @@ def delete_item_with_itemid(itemId):
     except KeyError:
         abort(404, message="item with itemId = {} not found".format(itemId))
 
+@app.put("/item/<string:itemId>")
+def update_item_with_itemid(itemId):
+    item_data = request.get_json()
+    if "price" not in item_data or "name" not in item_data:
+        abort(400, message= "Bad request. Ensure price and name are included in json payload")
+
+    try:
+        item = items[itemId]
+        item |= item_data #this dictionary operator does in place replacement
+        return item, 200
+    except KeyError:
+        abort(404, message="item with itemId = {} not found".format(itemId))
+
