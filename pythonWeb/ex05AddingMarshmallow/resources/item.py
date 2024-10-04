@@ -11,12 +11,12 @@ blp = Blueprint("items", __name__, description="Operations on item")
 @blp.route("/item")
 class Item(MethodView):
 
-    @blp.response(200,ItemSchema(many=True))
+    @blp.response(200, ItemSchema(many=True))
     def get(self):
         return items.values(), 200
 
     @blp.arguments(ItemSchema)
-    @blp.response(201,ItemSchema)
+    @blp.response(201, ItemSchema)
     def post(self, item_data):
         #item_data = request.get_json()
         # if (
@@ -42,7 +42,7 @@ class Item(MethodView):
 @blp.route("/item/<string:itemId>")
 class ItemIdOperations(MethodView):
 
-    @blp.response(200,ItemSchema)
+    @blp.response(200, ItemSchema)
     def get(self, itemId):
         try:
             return items[itemId]
@@ -57,9 +57,10 @@ class ItemIdOperations(MethodView):
             abort(404, message="item with itemId = {} not found".format(itemId))
 
     @blp.arguments(ItemUpdateSchema)
-    @blp.response(200,ItemSchema)
-    def put(self, itemId):
-        item_data = request.get_json()
+    @blp.response(200, ItemSchema)
+    def put(self, item_data, itemId): #when using marshmallow-schemas the blp arument will be the first parameter after self
+        #item_data = request.get_json()
+        print("itemId={} and itemdata={}".format(itemId, item_data))
         if "price" not in item_data or "name" not in item_data:
             abort(400, message="Bad request. Ensure price and name are included in json payload")
 
