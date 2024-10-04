@@ -13,7 +13,7 @@ def get_stores():
     return {"stores": list(stores.values())}
 
 
-
+# sample payload: {    "name":"mystore"}
 @app.post("/store")
 def create_stores():
     request_data = request.get_json()  #reads the post-request payload to a dictionary
