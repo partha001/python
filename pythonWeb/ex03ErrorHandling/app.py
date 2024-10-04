@@ -13,11 +13,7 @@ def get_stores():
     return {"stores": list(stores.values())}
 
 
-# api to create store
-# note: reading data post request payload
-# this api creates an empty store with zero items
-# request uri: http://localhost:5000/store
-# request payload:  {"name": "MyStore1"}
+
 @app.post("/store")
 def create_stores():
     request_data = request.get_json()  #reads the post-request payload to a dictionary
@@ -33,22 +29,34 @@ def create_stores():
 
 
 # api to get details of a particular store
-#  http://localhost:5000/store/getStoreDetails?storeId=ae4445f6545546e3b51a0cacd0b4c525
-@app.get("/store/getStoreDetails")
-def get_store_details():
-    storeId = request.args.get('storeId')
-    if storeId not in stores:
-        return stores.get(storeId), 200
-    #return "store with storeId = {} not found".format(storeId), 404
-    abort(404, message="store with storeId = {} not found".format(storeId))
+#  http://localhost:5000/store/0e7a29d0a57e49bb902887a05a64fe31
+@app.get("/store/<string:storeId>")
+def get_store_details(storeId):
+    try:
+        return stores[storeId]
+    except KeyError:
+        abort(404, message="store with storeId = {} not found".format(storeId))
+
+@app.delete("/store/<string:storeId>")
+def delete_store_details(storeId):
+    try:
+        del stores[storeId]
+        return {"message":"store with deleted successfully "},200
+    except KeyError:
+        abort(404, message="store with storeId = {} not found".format(storeId))
+
+@app.get("/item")
+def get_all_items():
+    return {"items": list(items.values())}, 200
 
 
-# api to create items within a particular store
+
 # http://localhost:5000/item
 # {"name": "Table","price":20, "storeId":"100"}
 @app.post("/item")
 def create_item():
     item_data = request.get_json()
+    print(item_data)
     if (
         "price" not in item_data
         or "storeId" not in item_data
@@ -59,7 +67,6 @@ def create_item():
             message="Bad request. ensure price, storeId and name is present included in json payload"
         )
     if item_data["storeId"] not in stores:
-        #return "storeId:{} is not found ".format(item_data["storeId"]), 404
         abort(404, message="storeId:{} is not found ".format(item_data["storeId"]))
 
     itemId = uuid.uuid4().hex
@@ -68,13 +75,18 @@ def create_item():
     return item, 201
 
 
-@app.get("/items")
-def get_all_items():
-    return {"items": list(items.values())}, 200
-
-
-@app.get("/items/<string:itemId>")
+@app.get("/item/<string:itemId>")
 def get_item_with_itemid(itemId):
-    if itemId not in items:
-        return "item with itemId:{} not found".format(itemId)
-    return items[itemId], 200
+    try:
+        return items[itemId]
+    except KeyError:
+        abort(404, message="item with itemId = {} not found".format(itemId))
+
+@app.delete("/item/<string:itemId>")
+def delete_item_with_itemid(itemId):
+    try:
+        del items[itemId]
+        return {"message":"item deleted successfully"},200
+    except KeyError:
+        abort(404, message="item with itemId = {} not found".format(itemId))
+
