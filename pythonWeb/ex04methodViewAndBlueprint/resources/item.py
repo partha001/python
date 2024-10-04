@@ -32,3 +32,35 @@ class Item(MethodView):
         item = {**item_data, "itemId": itemId}
         items[itemId] = item
         return item, 201
+
+
+@blp.route("/item/<string:itemId>")
+class ItemIdOperations(MethodView):
+
+    def get(self,itemId):
+        try:
+            return items[itemId]
+        except KeyError:
+            abort(404, message="item with itemId = {} not found".format(itemId))
+
+
+    def delete(self,itemId):
+        try:
+            del items[itemId]
+            return {"message":"item deleted successfully "},200
+        except KeyError:
+            abort(404, message="item with itemId = {} not found".format(itemId))
+
+
+    def put(self,itemId):
+        item_data = request.get_json()
+        if "price" not in item_data or "name" not in item_data:
+            abort(400, message= "Bad request. Ensure price and name are included in json payload")
+
+        try:
+            item = items[itemId]
+            item |= item_data #this dictionary operator does in place replacement
+            return item, 200
+        except KeyError:
+            abort(404, message="item with itemId = {} not found".format(itemId))
+
