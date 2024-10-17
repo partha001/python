@@ -16,6 +16,9 @@ string to character array
     #without taking to a list one can also itrate over characters as
     for c in "foobar"
 
+character array to string
+    mystring = "".join(mylist) #where mylist is the character array
+
 
 find()
     # retuns the index if character is found else return -1 . and here are the different overloads
@@ -390,20 +393,48 @@ dictionary related
 to check if a key exists in dictionary
     key1 in myDict
 
+declaring an empty dict
+    mydict = {}
+
+
+declaring dictionary with datatypes mentioned
+    mydict : Dict[str, str] = {} #where both key and value are strins
+    mydict: Dict[str, list[str]] = {} #where key type is string and value is list of strings
+
 adding value to dictionary
     myDict["key1"] = value1
 
  getting value for a key
    myvar = myDict["mykey1"] #however this approach gives key error if the key doesnt exist
 
-  another way of accessing value is by using the get() method of the dictionary class. this returns null if the key doesnt exist
-  myDict.get("mykey1") //this returns None if the key doenst exist
+      another way of accessing value is by using the get() method of the dictionary class. this returns null if the key doesnt exist
+      myDict.get("mykey1") //this returns None if the key doenst exist
 
 
-  print(flightPrices.get("patna",0)) #this is the overriden form to get some default value when the key is not found
-  print(flightPrices.get("patna"))   #op: None   ie none will be returned if we dont pass the
+      print(flightPrices.get("patna",0)) #this is the overriden form to get some default value when the key is not found
+      print(flightPrices.get("patna"))   #op: None   ie none will be returned if we dont pass the
+
+to check if a key exists in the dictionary:
+    pokemon = {
+        "fire" : ["charmander", "charmeleon","charizard"],
+        "water" : ["squirtle","warturtle","blastoise"],
+        "grass" : ["bulbasaur","venusaur","ivysaur"]
+    }
 
 
+    # checking if a key exists or not
+    print("fire" in pokemon) #op: True
+    print("Fire" in pokemon) #op: False   since they keys are case-sensitive
+
+
+    print("zombie" not in pokemon) #op: True
+    print("Fire" not in pokemon) #op: True
+
+adding/updating a key in a dictionary:
+    footballTeams["brazil"] = ["kaka","rivado","kafu"] #this will add the key="brazil" to the footballTeams dictionary
+    # if they i.e. brazil already didnt exist in the footballTeams dictionary.
+
+    #however the the above update the value for the brazil is the dictionary if the key i.e. brazil already existed in the dictionary
 
 
 other language hacks
